@@ -1,3 +1,4 @@
+const { checkUserExist } = require("../database.validators");
 const {
   registerExpectedFields,
   loginExpectedFields,
@@ -8,12 +9,14 @@ const {
   characterLimit,
 } = require("./user.validators");
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const { method, path } = req;
   try {
     // This switch statement identifies which method is being sent from the request
     switch (method) {
       case "POST": {
+        await checkUserExist(req, res);
+
         // This switch statement identifies the specific path that user is requesting from.
         switch (path) {
           case "/register": {
@@ -32,7 +35,9 @@ module.exports = (req, res, next) => {
             checkEmptyFields(loginExpectedFields)(req, res);
           }
         }
+
         characterLimit(req.body)(req, res);
+
         break;
       }
     }
