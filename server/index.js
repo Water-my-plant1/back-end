@@ -1,8 +1,10 @@
 const express = require("express");
 const server = express();
 
-server.get("/", (req, res) => {
-  return res.json({ message: "Testing route" });
-});
+const userRouter = require("./api/users/users.model");
+
+server.use(express.json());
+
+server.use("/api/users", userRouter);
 
 module.exports = server;
