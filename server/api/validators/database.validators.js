@@ -1,4 +1,4 @@
-const db = require("../../data/dbconfig");
+const db = require("../../../data/dbconfig");
 
 const checkUserExist = async (req, res) => {
   let { name } = req.body;

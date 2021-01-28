@@ -3,7 +3,10 @@ exports.up = function (knex) {
     table.increments("id");
     table.string("nickname", 255).notNullable();
     table.string("species", 255).notNullable();
-    table.string("h2oFrequency", 255).notNullable();
+    table.float("h2oFrequency").notNullable();
+    table.integer("user_id").unsigned();
+
+    table.foreign("user_id").references("users.id");
   });
 };
 

@@ -39,6 +39,8 @@ const characterLimit = (fields) => (req, res) => {
     const value = fields[keys[i]];
     if (value.length > 255) {
       catchedFields.push(keys[i]);
+    } else if (typeof value !== "string") {
+      pass;
     }
   }
 
