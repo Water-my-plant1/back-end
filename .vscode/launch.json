@@ -1,0 +1,12 @@
+{
+  "version": "<some-version>",
+  "configurations": [
+    {
+      "type": "node",
+      "runtimeVersion": "12.19.0", // If i need to run node 4.8.7
+      "request": "launch",
+      "name": "Launch",
+      "program": "${workspaceFolder}/index.js"
+    }
+  ]
+}
