@@ -49,7 +49,6 @@ const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     const foundUser = await db("users").where({ username }).first();
-    console.log(foundUser);
     const passwordMatch = await bcrypt.compare(password, foundUser.password);
 
     if (!passwordMatch) {
