@@ -1,4 +1,4 @@
-const { checkUserExist } = require("../database.validators");
+const { checkUserExist } = require("../validators/database.validators");
 const {
   registerExpectedFields,
   loginExpectedFields,
@@ -7,7 +7,7 @@ const {
   throwMissingFieldsError,
   checkEmptyFields,
   characterLimit,
-} = require("./user.validators");
+} = require("../validators/shared.validators");
 
 module.exports = async (req, res, next) => {
   const { method, path } = req;
@@ -15,11 +15,10 @@ module.exports = async (req, res, next) => {
     // This switch statement identifies which method is being sent from the request
     switch (method) {
       case "POST": {
-        await checkUserExist(req, res);
-
         // This switch statement identifies the specific path that user is requesting from.
         switch (path) {
           case "/register": {
+            await checkUserExist(req, res);
             throwMissingFieldsError(
               registerExpectedFields,
               Object.keys(req.body)
@@ -28,6 +27,7 @@ module.exports = async (req, res, next) => {
             break;
           }
           case "/login": {
+            await checkUserExist(req, res);
             throwMissingFieldsError(loginExpectedFields, Object.keys(req.body))(
               req,
               res

@@ -1,2 +1,2 @@
-const createPlantsExpectedFields = ["nickname", "species", "h2oFrequency"];
+const createPlantsExpectedFields = ["nickname", "species", "h2ofrequency"];
 module.exports = { createPlantsExpectedFields };

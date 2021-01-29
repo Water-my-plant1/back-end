@@ -4,7 +4,7 @@ exports.up = function (knex) {
     table.string("nickname", 255).notNullable();
     table.string("species", 255).notNullable();
     table.float("h2oFrequency").notNullable();
-    table.integer("user_id").unsigned();
+    table.integer("user_id").unsigned().notNullable();
 
     table.foreign("user_id").references("users.id");
   });
