@@ -22,8 +22,8 @@ Returns the created user
 Example:
 ```json
 {
-  message: "User created",
-  user: {
+  "message": "User created",
+  "user": {
     "id": 1,
     "username": "TestUser",
     "phone": "1234567890",
