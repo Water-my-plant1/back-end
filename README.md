@@ -4,7 +4,7 @@ The backend for the Water My Plants project for bwt-100 in LambdaSchool.
 
 This projects uses JSONWebToken for user authentication.
 
-The link to the API is hosted by Heroku [here](https://water-my-plants-webpt100.herokuapp.com/api/users/login).
+The link to the API is hosted by Heroku [here](https://water-my-plants-webpt100.herokuapp.com/).
 
 ___________________
 
