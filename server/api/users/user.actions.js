@@ -63,4 +63,20 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser };
+const updateProfile = async (req, res) => {
+  /**
+   * @FIELDS
+   * phoneNumber
+   * password
+   */
+
+  try {
+    const { id } = req.user;
+    await db("users").where({ id }).update(req.body);
+    return res.json({ message: "Your profile has been updated." });
+  } catch (error) {
+    return error;
+  }
+};
+
+module.exports = { createUser, loginUser, updateProfile };
