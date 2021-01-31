@@ -40,7 +40,82 @@ const viewPersonalPlants = async (req, res) => {
   }
 };
 
+const deletePlant = async (req, res) => {
+  try {
+    const { id: user_id } = req.user;
+    const { id: plant_id } = req.params;
+
+    const foundPlant = await db("plants")
+      .where({ user_id, id: plant_id })
+      .first();
+    if (!foundPlant) {
+      return res
+        .status(400)
+        .json({ message: "This plant doesn not belong to this user." });
+    }
+
+    await db("plants")
+      .where({ user_id, id: plant_id })
+      .del()
+      .catch((err) => {
+        return res.status(400).json({
+          err,
+          message: "An error occured when deleting a plant in the database.",
+        });
+      });
+
+    return res.json({
+      message: `Plant with the id of ${plant_id} has been deleted.`,
+    });
+  } catch (error) {
+    return error;
+  }
+};
+
+const updatePlant = async (req, res) => {
+  /**
+   * @FIELDS
+   * nickname
+   * species
+   * h2oFrequency
+   */
+
+  // All of the fields have to passed. If there is a field that still keeps the same value as before, pass that value as is.
+
+  try {
+    const { id: user_id } = req.user;
+    const { id: plant_id } = req.params;
+
+    const foundPlant = await db("plants")
+      .where({ user_id, id: plant_id })
+      .first();
+    if (!foundPlant) {
+      return res
+        .status(400)
+        .json({ message: "This plant doesn not belong to this user." });
+    }
+
+    await db("plants")
+      .where({ user_id, id: plant_id })
+      .update(req.body)
+      .catch((err) => {
+        return res.status(400).json({
+          err,
+          message: "An error occured when updating a plant in the database.",
+        });
+      });
+
+    return res.json({
+      message: `Plant with the id of ${plant_id} has been updated.`,
+    });
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   createPlant,
   viewPersonalPlants,
+  deletePlant,
+  updatePlant,
 };

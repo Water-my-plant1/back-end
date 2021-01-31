@@ -22,4 +22,23 @@ const checkUserExist = async (req, res) => {
   return userFoundByName;
 };
 
-module.exports = { checkUserExist };
+const checkPlantExist = async (req, res) => {
+  console.log(req.params);
+  let { id } = req.params;
+
+  const foundPlant = await db("plants").where({ id }).first();
+
+  if (!id || id === "") {
+    return res.status(400).json({ message: "No id given in the parameters." });
+  }
+
+  if (!foundPlant) {
+    return res
+      .status(400)
+      .json({ message: `Plant  with the id of ${id} does not exist.` });
+  }
+
+  return foundPlant;
+};
+
+module.exports = { checkUserExist, checkPlantExist };

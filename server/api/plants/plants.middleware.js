@@ -1,18 +1,19 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken");
-
-const { createPlantsExpectedFields } = require("./plants.expectedFields");
+const {
+  createPlantsExpectedFields,
+  udpatePlantExpectedFields,
+} = require("./plants.expectedFields");
 const {
   throwMissingFieldsError,
   checkEmptyFields,
   characterLimit,
 } = require("../validators/shared.validators");
 
-const plantsMiddleware = (req, res, next) => {
+const plantsMiddleware = async (req, res, next) => {
   const { method } = req;
   try {
     switch (method) {
-      case "POST":
+      case "POST": {
         throwMissingFieldsError(
           createPlantsExpectedFields,
           Object.keys(req.body)
@@ -21,6 +22,16 @@ const plantsMiddleware = (req, res, next) => {
         characterLimit(req.body)(req, res);
 
         break;
+      }
+      case "PUT": {
+        throwMissingFieldsError(
+          udpatePlantExpectedFields,
+          Object.keys(req.body)
+        )(req, res);
+        checkEmptyFields(udpatePlantExpectedFields)(req, res);
+        characterLimit(req.body)(req, res);
+        break;
+      }
     }
   } catch (error) {
     return error;
