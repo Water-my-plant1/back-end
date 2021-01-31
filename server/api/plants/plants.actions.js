@@ -30,6 +30,17 @@ const createPlant = async (req, res) => {
   }
 };
 
+const viewPersonalPlants = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const result = await db("plants").select("*").where({ user_id: id });
+    return res.json(result);
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   createPlant,
+  viewPersonalPlants,
 };
