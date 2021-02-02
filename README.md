@@ -13,6 +13,7 @@ ___________________
 ### Users Route /api/users/
 
  **Required Fields**
+ `Method POST`
 * `/api/users/register`
   * *username* - string
   * *phone* - string
@@ -33,6 +34,7 @@ Example:
 ```
   
    **Required Fields**
+   `Method POST`
 * `/api/users/login`
   * *username* - string
   * *password* - string
@@ -43,13 +45,26 @@ Example:
 {
     "message": "You're logged in.",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJUZXN0VXNlciIsInBob25lIjoiMTIzNDMyMSIsInBhc3N3b3JkIjoiJDJiJDEwJDFONTdHQnJyLnZ4YTBVQWxxblhubXU0WTJidEF2OTVhM3dtbnpmRVgxazUvSElIRmVLaGNlIiwiaWF0IjoxNjExODAyMjEzfQ.d3Unv68BPmHNQCEE_xshabEGPEHvLxw1jy1I4A8APjc"
-}
+
+
 ```
+  
+   **Required Fields**
+   `Method PUT`
+* `/api/users/updateProfile`
+  * *phone* - string
+  * *password* - string
+  
+  Updates the profile of the currently authenticated use by updating either the phone or password.
+  
+  **NOTE: All fields in for this request must have a value set. If a field or fields values do not change, pass the same value as it currently is.**
+
 ___________________
 
-### Users Route /api/plants/
+### Plants Route /api/plants/
 
  **Required Fields**
+ `Method POST`
 * `/api/plants/`
   * *nickname* - string
   * *species* - string
@@ -58,6 +73,8 @@ ___________________
   ** Headers Required **
   *
    * Authentication = token  
+
+Creates a plant of the currently authenticated user.
 
 Token is provided when loggin in on a registered user.  
 Returns the created plant
@@ -75,3 +92,29 @@ Example:
     "message": "Plant created by TestUser"
 }
 ```
+
+ **Required Fields**
+ `Method PUT`
+* `/api/plants/:id`
+  * *nickname* - string
+  * *species* - string
+  * *h20frequency* - number
+    
+  ** Headers Required **
+  *
+   * Authentication = token  
+   
+   Updates the information with the given ID parameter of the url path.
+   
+   **NOTE: All fields in for this request must have a value set. If a field or fields values do not change, pass the same value as it currently is.**
+   
+  
+ **Required Fields**
+ `Method DELETE`
+* `/api/plants/:id`
+    
+  ** Headers Required **
+  *
+   * Authentication = token  
+   
+   All that is required from the request is the authentication headers to pass the DELETE request.
