@@ -5,6 +5,7 @@ const {
   viewPersonalPlants,
   updatePlant,
   deletePlant,
+  viewSpecificPlant,
 } = require("./plants.actions");
 const { authenticateUser } = require("../users/user.authentication");
 
