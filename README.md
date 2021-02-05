@@ -6,21 +6,23 @@ This projects uses JSONWebToken for user authentication.
 
 The link to the API is hosted by Heroku [here](https://water-my-plants-webpt100.herokuapp.com/).
 
-___________________
+---
 
 ## API DOCS
 
 ### Users Route /api/users/
 
- **Required Fields**
- `Method POST`
-* `/api/users/register`
-  * *username* - string
-  * *phone* - string
-  * *password* - string
-  
+**Required Fields**
+`Method POST`
+
+- `/api/users/register`
+  - _username_ - string
+  - _phone_ - string
+  - _password_ - string
+
 Returns the created user
 Example:
+
 ```json
 {
   "message": "User created",
@@ -32,15 +34,18 @@ Example:
   }
 }
 ```
-  
-   **Required Fields**
-   `Method POST`
-* `/api/users/login`
-  * *username* - string
-  * *password* - string
-  
+
+**Required Fields**
+`Method POST`
+
+- `/api/users/login`
+
+  - _username_ - string
+  - _password_ - string
+
   Returns the created user
   Example:
+
 ```json
 {
     "message": "You're logged in.",
@@ -48,31 +53,35 @@ Example:
 
 
 ```
-  
-   **Required Fields**
-   `Method PUT`
-* `/api/users/updateProfile`
-  * *phone* - string
-  * *password* - string
-  
+
+**Required Fields**
+`Method PUT`
+
+- `/api/users/updateProfile`
+
+  - _phone_ - string
+  - _password_ - string
+
   Updates the profile of the currently authenticated use by updating either the phone or password.
-  
+
   **NOTE: All fields in for this request must have a value set. If a field or fields values do not change, pass the same value as it currently is.**
 
-___________________
+---
 
 ### Plants Route /api/plants/
 
- **Required Fields**
- `Method POST`
-* `/api/plants/`
-  * *nickname* - string
-  * *species* - string
-  * *h20frequency* - number
-  
+**Required Fields**
+`Method POST`
+
+- `/api/plants/`
+
+  - _nickname_ - string
+  - _species_ - string
+  - _h20frequency_ - number
+
   ** Headers Required **
-  *
-   * Authentication = token  
+
+  - - Authentication = token
 
 Creates a plant of the currently authenticated user.
 
@@ -80,41 +89,37 @@ Token is provided when loggin in on a registered user.
 Returns the created plant
 
 Example:
+
 ```json
 {
-    "createdPlant": {
-        "id": 3,
-        "nickname": "Testing Plant",
-        "species": "Testing Species",
-        "h2ofrequency": 10,
-        "user_id": 2
-    },
-    "message": "Plant created by TestUser"
+  "createdPlant": {
+    "id": 3,
+    "nickname": "Testing Plant",
+    "species": "Testing Species",
+    "h2ofrequency": 10,
+    "user_id": 2
+  },
+  "message": "Plant created by TestUser"
 }
 ```
 
- **Required Fields**
- `Method PUT`
-* `/api/plants/:id`
-  * *nickname* - string
-  * *species* - string
-  * *h20frequency* - number
-    
+**Required Fields**
+`Method PUT`
+
+- `/api/plants/:id`
+  - _nickname_ - string
+  - _species_ - string
+  - _h20frequency_ - number
   ** Headers Required **
-  *
-   * Authentication = token  
-   
-   Updates the information with the given ID parameter of the url path.
-   
-   **NOTE: All fields in for this request must have a value set. If a field or fields values do not change, pass the same value as it currently is.**
-   
-  
- **Required Fields**
- `Method DELETE`
-* `/api/plants/:id`
-    
+  - - Authentication = token
+
+    Updates the information with the given ID parameter of the url path.
+
+    **NOTE: All fields in for this request must have a value set. If a field or fields values do not change, pass the same value as it currently is.**
+  **Required Fields**
+  `Method DELETE`
+- `/api/plants/:id`
   ** Headers Required **
-  *
-   * Authentication = token  
-   
-   All that is required from the request is the authentication headers to pass the DELETE request.
+  - - Authentication = token
+
+    All that is required from the request is the authentication headers to pass the DELETE request.

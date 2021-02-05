@@ -113,9 +113,14 @@ const updatePlant = async (req, res) => {
   }
 };
 
+const viewSpecificPlant = async (req, res) => {
+  return await db("plants").where({ id: req.params.id });
+};
+
 module.exports = {
   createPlant,
   viewPersonalPlants,
   deletePlant,
   updatePlant,
+  viewSpecificPlant,
 };
