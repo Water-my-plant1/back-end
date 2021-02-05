@@ -85,6 +85,7 @@ const updatePlant = async (req, res) => {
   try {
     const { id: user_id } = req.user;
     const { id: plant_id } = req.params;
+    const { nickname, species, h2oFrequency: h2ofrequency } = req.body;
 
     const foundPlant = await db("plants")
       .where({ user_id, id: plant_id })
@@ -97,7 +98,7 @@ const updatePlant = async (req, res) => {
 
     await db("plants")
       .where({ user_id, id: plant_id })
-      .update(req.body)
+      .update({ nickname, species, h2ofrequency })
       .catch((err) => {
         return res.status(400).json({
           err,
