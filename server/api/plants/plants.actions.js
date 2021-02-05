@@ -2,7 +2,7 @@ const db = require("../../../data/dbconfig");
 
 const createPlant = async (req, res) => {
   try {
-    const { nickname, species, h2ofrequency } = req.body;
+    const { nickname, species, h2oFrequency: h2ofrequency } = req.body;
     const { id: user_id } = req.user;
 
     const result = await db("plants").insert({
